@@ -11,7 +11,7 @@ import Test.Tasty.Runners   ( defaultMainWithIngredients )
 --                     local imports                      --
 ------------------------------------------------------------
 
-import ContainersPlus.T.MapUtils  ( tests )
+import T.MACAddress  ( tests )
 
 --------------------------------------------------------------------------------
 
