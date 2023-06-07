@@ -97,7 +97,7 @@ import qualified  Text.Printer  as  P
 
 -- textual-plus ------------------------
 
-import TextualPlus  ( parseTextM )
+import TextualPlus  ( TextualPlus( textual' ), parseTextM )
 
 -- tfmt --------------------------------
 
@@ -121,13 +121,16 @@ instance Printable MACAddress where
 ----------------------------------------
 
 instance Textual MACAddress where
-  textual = let hexByte = (\ (a,b) → a*16+b) ⊳ ((,) ⊳ TI.hexDigit ⊵ TI.hexDigit)
-             in MACAddress ⊳ hexByte ⋪ (RC.oneOf ":-")
+  textual = let hexByte= (\ (a,b) → a*16+b) ⊳ ((,) ⊳ TI.hexDigit ⊵ TI.hexDigit)
+            in  MACAddress ⊳ hexByte ⋪ (RC.oneOf ":-")
                            ⊵ hexByte ⋪ (RC.oneOf ":-")
                            ⊵ hexByte ⋪ (RC.oneOf ":-")
                            ⊵ hexByte ⋪ (RC.oneOf ":-")
                            ⊵ hexByte ⋪ (RC.oneOf ":-")
                            ⊵ hexByte
+
+instance TextualPlus MACAddress where
+  textual' = textual
 
 ----------------------------------------
 
